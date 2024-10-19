@@ -1,7 +1,9 @@
+import HomeCard from "@/Components/HomeCard";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link } from "@inertiajs/react";
+import Section from "@/Layouts/Section";
+import { Head } from "@inertiajs/react";
 
-export default function Home({ auth, laravelVersion, phpVersion }) {
+export default function Home({ homes }) {
     return (
         <AuthenticatedLayout
             header={
@@ -18,7 +20,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* <!-- Start Location --> */}
 
-                <section className="mb-6">
+                <Section notitle>
                     <div className="flex justify-between items-center font-bold">
                         <div className="flex items-center gap-4">
                             <div className="w-16 h-16 text-gray-800 dark:text-white rounded-full bg-accent flex items-center justify-center">
@@ -70,9 +72,9 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                             />
                         </svg>
                     </div>
-                </section>
-                {/* <!-- End Location --> */}
-                {/* <!-- Start Search --> */}
+                </Section>
+                {/* End Location */}
+                {/* Start Search */}
                 <label className="input input-bordered flex items-center gap-2 mb-6 bg-gray-100">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -106,9 +108,13 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                                 className="w-full object-cover"
                             />
                             {/* <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
-                        <a href="#slide4" className="btn btn-circle">❮</a>
-                        <a href="#slide2" className="btn btn-circle">❯</a>
-                    </div> */}
+                                <a href="#slide4" className="btn btn-circle">
+                                    ❮
+                                </a>
+                                <a href="#slide2" className="btn btn-circle">
+                                    ❯
+                                </a>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -116,28 +122,7 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
 
                 {/* <!-- Start Main Menu --> */}
 
-                <section className="my-6">
-                    <div className="flex justify-between items-center font-bold">
-                        <h2 className="text-lg font-semibold">Menu Utama</h2>
-                        <svg
-                            className="w-6 h-6 text-gray-800 dark:text-white"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="m9 5 7 7-7 7"
-                            />
-                        </svg>
-                    </div>
-
+                <Section title="Main Menu">
                     <div className="grid grid-cols-3 gap-4 my-4 text-white justify-between md:flex md:justify-start">
                         <div className="flex flex-col items-center justify-center gap-2 md:w-32 p-2  bg-accent rounded-xl aspect-square">
                             <svg
@@ -204,118 +189,17 @@ export default function Home({ auth, laravelVersion, phpVersion }) {
                             </span>
                         </div>
                     </div>
-                </section>
-                {/* <!-- End Main MEnu --> */}
+                </Section>
+                {/* <!-- End Main Menu --> */}
 
                 {/* <!-- Start For Your Page --> */}
-                <section className="my-6">
-                    <div className="flex justify-between items-center font-bold">
-                        <h2 className="text-lg font-semibold">Untuk Anda</h2>
-                        <svg
-                            className="w-6 h-6 text-gray-800 dark:text-white"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="m9 5 7 7-7 7"
-                            />
-                        </svg>
+                <Section title="Untuk Anda">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-4 justify-between">
+                        {homes.map((home) => (
+                            <HomeCard home={home} key={home.id} />
+                        ))}
                     </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-4  justify-between">
-                        <div className="card card-compact bg-base-100 shadow-xl">
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes"
-                                />
-                            </figure>
-                            <div className="card-body">
-                                <h2 className="card-title">Rumah Tipe B</h2>
-                                <p className="text-right">Rp 250,000,000</p>
-                                <progress
-                                    className="progress progress-accent w-full"
-                                    value="50"
-                                    max="100"
-                                ></progress>
-                                <p className="">8 investor</p>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-accent text-white dark:text-black">
-                                        Invest
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card card-compact bg-base-100 shadow-xl">
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes"
-                                />
-                            </figure>
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>
-                                    If a dog chews shoes whose shoes does he
-                                    choose?
-                                </p>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">
-                                        Invest
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card card-compact bg-base-100 shadow-xl">
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes"
-                                />
-                            </figure>
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>
-                                    If a dog chews shoes whose shoes does he
-                                    choose?
-                                </p>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">
-                                        Invest
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="card card-compact bg-base-100 shadow-xl">
-                            <figure>
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                                    alt="Shoes"
-                                />
-                            </figure>
-                            <div className="card-body">
-                                <h2 className="card-title">Shoes!</h2>
-                                <p>
-                                    If a dog chews shoes whose shoes does he
-                                    choose?
-                                </p>
-                                <div className="card-actions justify-end">
-                                    <button className="btn btn-primary">
-                                        Invest
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                </Section>
                 {/* <!-- End For Your Page --> */}
                 <div className="h-24"></div>
             </div>
