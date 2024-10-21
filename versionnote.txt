@@ -1,11 +1,3 @@
 - menambahkan login by google pada login page
-
-[
-    # tambahkan pada env file
-    GOOGLE_CLIENT_ID=145598569035-o37avodjkeudnmqnteakd0th41nug0kl.apps.googleusercontent.com
-    GOOGLE_CLIENT_SECRET=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
-    GOOGLE_REDIRECT_URL=http://localhost:8000/login/google/callback
-]
-
 - menambahkan skema baru pada migrasi users
 
