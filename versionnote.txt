@@ -1,1 +1,3 @@
 - menambahkan login by google pada login page
+- menambahkan skema baru pada migrasi users
+
