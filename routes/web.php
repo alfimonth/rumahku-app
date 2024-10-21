@@ -2,11 +2,16 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::resource('transactions', TransactionController::class)->names([
+    'index' => 'transactions',
+    'show' => 'transaction.show',
+]);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

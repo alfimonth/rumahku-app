@@ -6,9 +6,10 @@ import { Head } from "@inertiajs/react";
 export default function Home({ homes }) {
     return (
         <AuthenticatedLayout
+            activePage={"home"}
             header={
-                <div className="flex justify-between items-center">
-                    <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+                <div className="flex items-center justify-between">
+                    <h2 className="text-xl font-semibold leading-tight text-gray-800">
                         <span className="text-red-500">Rumah</span>
                         <span className="text-slate-500">Ku</span>
                     </h2>
@@ -17,15 +18,15 @@ export default function Home({ homes }) {
             }
         >
             <Head title="Home" />
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 {/* <!-- Start Location --> */}
 
                 <Section notitle>
-                    <div className="flex justify-between items-center font-bold">
+                    <div className="flex items-center justify-between font-bold">
                         <div className="flex items-center gap-4">
-                            <div className="w-16 h-16 text-gray-800 dark:text-white rounded-full bg-accent flex items-center justify-center">
+                            <div className="flex items-center justify-center w-16 h-16 text-gray-800 rounded-full dark:text-white bg-accent">
                                 <svg
-                                    className="w-8 h-8 dark:text-gray-800 text-white"
+                                    className="w-8 h-8 text-white dark:text-gray-800"
                                     aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"
@@ -75,12 +76,12 @@ export default function Home({ homes }) {
                 </Section>
                 {/* End Location */}
                 {/* Start Search */}
-                <label className="input input-bordered flex items-center gap-2 mb-6 bg-gray-100">
+                <label className="flex items-center gap-2 mb-6 bg-gray-100 input input-bordered">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 16 16"
                         fill="currentColor"
-                        className="h-4 w-4 opacity-70"
+                        className="w-4 h-4 opacity-70"
                     >
                         <path
                             fillRule="evenodd"
@@ -90,24 +91,24 @@ export default function Home({ homes }) {
                     </svg>
                     <input
                         type="search"
-                        className="grow focus:ring-0 border-none pl-0"
+                        className="pl-0 border-none grow focus:ring-0"
                         placeholder="Cari di sini..."
                     />
                 </label>
                 {/* <!-- End Search --> */}
 
                 {/* <!--Start Carousel--> */}
-                <div className="h-40 md:h-64 w-full rounded-xl overflow-hidden">
-                    <div className="carousel w-full h-full md:h-64">
+                <div className="w-full h-40 overflow-hidden md:h-64 rounded-xl">
+                    <div className="w-full h-full carousel md:h-64">
                         <div
                             id="slide1"
-                            className="carousel-item relative w-full bg-green h-full"
+                            className="relative w-full h-full carousel-item bg-green"
                         >
                             <img
                                 src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
-                                className="w-full object-cover"
+                                className="object-cover w-full"
                             />
-                            {/* <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                            {/* <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                                 <a href="#slide4" className="btn btn-circle">
                                     ❮
                                 </a>
@@ -123,10 +124,10 @@ export default function Home({ homes }) {
                 {/* <!-- Start Main Menu --> */}
 
                 <Section title="Main Menu">
-                    <div className="grid grid-cols-3 gap-4 my-4 text-white justify-between md:flex md:justify-start">
-                        <div className="flex flex-col items-center justify-center gap-2 md:w-32 p-2  bg-accent rounded-xl aspect-square">
+                    <div className="grid justify-between grid-cols-3 gap-4 my-4 text-white md:flex md:justify-start">
+                        <div className="flex flex-col items-center justify-center gap-2 p-2 md:w-32 bg-accent rounded-xl aspect-square">
                             <svg
-                                className="w-6 h-6 dark:text-gray-800 text-white"
+                                className="w-6 h-6 text-white dark:text-gray-800"
                                 aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -142,13 +143,13 @@ export default function Home({ homes }) {
                                     d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"
                                 />
                             </svg>
-                            <span className="text-center space-y-1">
+                            <span className="space-y-1 text-center">
                                 Cari Rumah
                             </span>
                         </div>
-                        <div className="flex flex-col items-center justify-center gap-2 md:w-32 p-2 bg-secondary rounded-xl aspect-square">
+                        <div className="flex flex-col items-center justify-center gap-2 p-2 md:w-32 bg-secondary rounded-xl aspect-square">
                             <svg
-                                className="w-6 h-6 dark:text-gray-800 text-white"
+                                className="w-6 h-6 text-white dark:text-gray-800"
                                 aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -164,11 +165,11 @@ export default function Home({ homes }) {
                                     d="M8 17.345a4.76 4.76 0 0 0 2.558 1.618c2.274.589 4.512-.446 4.999-2.31.487-1.866-1.273-3.9-3.546-4.49-2.273-.59-4.034-2.623-3.547-4.488.486-1.865 2.724-2.899 4.998-2.31.982.236 1.87.793 2.538 1.592m-3.879 12.171V21m0-18v2.2"
                                 />
                             </svg>
-                            <span className="text-center space-y-1">Topup</span>
+                            <span className="space-y-1 text-center">Topup</span>
                         </div>
-                        <div className="flex flex-col items-center justify-center gap-2 md:w-32 p-2  bg-primary rounded-xl aspect-square">
+                        <div className="flex flex-col items-center justify-center gap-2 p-2 md:w-32 bg-primary rounded-xl aspect-square">
                             <svg
-                                className="w-6 h-6 dark:text-gray-800 text-white"
+                                className="w-6 h-6 text-white dark:text-gray-800"
                                 aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -184,7 +185,7 @@ export default function Home({ homes }) {
                                     d="M18.427 14.768 17.2 13.542a1.733 1.733 0 0 0-2.45 0l-.613.613a1.732 1.732 0 0 1-2.45 0l-1.838-1.84a1.735 1.735 0 0 1 0-2.452l.612-.613a1.735 1.735 0 0 0 0-2.452L9.237 5.572a1.6 1.6 0 0 0-2.45 0c-3.223 3.2-1.702 6.896 1.519 10.117 3.22 3.221 6.914 4.745 10.12 1.535a1.601 1.601 0 0 0 0-2.456Z"
                                 />
                             </svg>
-                            <span className="text-center space-y-1">
+                            <span className="space-y-1 text-center">
                                 Call Center
                             </span>
                         </div>
@@ -194,7 +195,7 @@ export default function Home({ homes }) {
 
                 {/* <!-- Start For Your Page --> */}
                 <Section title="Untuk Anda">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-4 justify-between">
+                    <div className="grid justify-between grid-cols-2 gap-4 my-4 md:grid-cols-4">
                         {homes.map((home) => (
                             <HomeCard home={home} key={home.id} />
                         ))}
