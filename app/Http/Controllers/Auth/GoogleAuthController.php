@@ -25,8 +25,7 @@ class GoogleAuthController extends Controller
     {
         $driver = Socialite::driver('google')->user();
 
-        dd($driver);
-
+        // dd($driver);
         $user = User::updateOrCreate([
             'google_id' => $driver->id,
         ], [
@@ -34,8 +33,8 @@ class GoogleAuthController extends Controller
             'username' => $driver->user['given_name'],
             'email' => $driver->email,
             'user_image' => $driver->avatar,
+            'password' => 'hello world',
         ]);
-
 
         Auth::login($user);
 
