@@ -1,13 +1,22 @@
 import ProgresBar from "./ProgresBar";
+import { useState } from "react";
 
 export default function HomeCard({ home }) {
+    const [isImageLoaded, setImageLoaded] = useState(false);
+
     return (
         <div className="card card-compact bg-base-100 shadow-xl overflow-hidden">
             <div className="relative">
-                <figure>
+                <figure
+                    className={`w-full bg-gray-200 ${
+                        !isImageLoaded ? "animate-pulse aspect-[3/4]" : "h-full"
+                    }`}
+                >
                     <img
-                        src="https://picsum.photos/400/400"
+                        src="https://picsum.photos/300/400"
                         alt={`${home.name}`}
+                        loading="lazy"
+                        onLoad={() => setImageLoaded(true)}
                     />
                 </figure>
                 <span className="absolute bottom-0 left-0 py-1 px-3 m-2 bg-[#4AB7B699] rounded-xl text-white">
@@ -37,7 +46,6 @@ export default function HomeCard({ home }) {
                 {new Intl.NumberFormat("id-ID", {
                     style: "currency",
                     currency: "IDR",
-                    separstor: ",",
                     minimumFractionDigits: 0,
                     maximumFractionDigits: 0,
                 }).format(price)}

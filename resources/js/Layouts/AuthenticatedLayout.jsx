@@ -202,7 +202,6 @@ export default function AuthenticatedLayout({ header, children }) {
 
             <main>{children}</main>
 
-            {/* <!-- Start Bottom Navigation --> */}
             <nav className="btm-nav md:hidden border-t-2 z-20">
                 <Link href={route("home")} className={`${route().current("home") ? "active" : ""}`}>
                     <svg
@@ -261,7 +260,6 @@ export default function AuthenticatedLayout({ header, children }) {
                     <span className="btm-nav-label">Akun</span>
                 </Link>
             </nav>
-            {/* <!-- End Bottom Navigation --> */}
         </div>
     );
 }
