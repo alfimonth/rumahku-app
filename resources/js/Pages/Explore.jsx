@@ -2,8 +2,6 @@ import HomeCard from "@/Components/HomeCard";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Section from "@/Layouts/Section";
 import { Head } from "@inertiajs/react";
-import MenuButton from "@/Components/MenuButton";
-import {  MdCall, MdHome, MdAttachMoney } from "react-icons/md";
 import Search from "@/Components/Search";
 import Location from "@/Components/Location";
 
@@ -20,22 +18,18 @@ export default function Home({ homes }) {
                 </div>
             }
         >
-            <Head title="Home" />
+            <Head title="Cari Rumah" />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Location />
                 <Search />
 
-
-
-                {/* <!-- Start For Your Page --> */}
                 <Section notitle>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-4 justify-between">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-4 justify-between mt-10">
                         {homes.map((home) => (
                             <HomeCard home={home} key={home.id} />
                         ))}
                     </div>
                 </Section>
-                {/* <!-- End For Your Page --> */}
                 <div className="h-24"></div>
             </div>
         </AuthenticatedLayout>

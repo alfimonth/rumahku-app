@@ -53,9 +53,9 @@ export default function Home({ homes }) {
 
                 <Section title="Main Menu">
                     <div className="grid grid-cols-3 gap-4 my-4 text-white justify-between md:flex md:justify-start">
-                        <MenuButton icon={<MdHome />} title="Cari Rumah" />
-                        <MenuButton icon={<MdAttachMoney />} title="Topup" />
-                        <MenuButton icon={<MdCall />} title="Call Center" />
+                        <MenuButton href={route("explore")} icon={<MdHome />} className="bg-primary" title="Cari Rumah" />
+                        <MenuButton icon={<MdAttachMoney />} className="bg-[#4B9DCB]" title="Topup" />
+                        <MenuButton icon={<MdCall />} className="bg-[#AF558B]" title="Call Center" />
                     </div>
                 </Section>
                 {/* <!-- End Main Menu --> */}

@@ -11,7 +11,7 @@ class ExploreController extends Controller
         [
             'name' => 'Home 1',
             'price' => 9000.000,
-            'investTotal' => 50,
+            'investTotal' => 70,
             'investor' => 9,
             'id' => 1,
         ],
@@ -25,7 +25,7 @@ class ExploreController extends Controller
         [
             'name' => 'Home 3',
             'price' => 2500000000,
-            'investTotal' => 50,
+            'investTotal' => 90,
             'investor' => 9,
             'id' => 3,
         ],

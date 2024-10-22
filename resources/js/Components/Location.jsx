@@ -6,7 +6,7 @@ export default function Location() {
         <Section notitle>
             <div className="flex justify-between items-center font-bold">
                 <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 text-3xl dark:text-gray-800 text-white rounded-full bg-accent flex items-center justify-center ">
+                    <div className="w-16 h-16 text-3xl dark:text-gray-800 text-white rounded-full bg-primary flex items-center justify-center ">
                         <MdLocationOn />
                     </div>
                     <div>

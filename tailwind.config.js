@@ -19,7 +19,15 @@ export default {
     },
 
     daisyui: {
-        themes: ["light"],
+        themes: [
+            {
+                light: {
+                    ...require("daisyui/src/theming/themes")["light"],
+                    "primary": "#4AB7B6"
+
+                },
+            },
+        ],
     },
 
     darkMode: "class",
