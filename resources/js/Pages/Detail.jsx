@@ -1,11 +1,8 @@
-import HomeCard from "@/Components/HomeCard";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import Section from "@/Layouts/Section";
 import { Head } from "@inertiajs/react";
-import Search from "@/Components/Search";
-import Location from "@/Components/Location";
 
-export default function Home({ homes }) {
+
+export default function Detail({ home }) {
     return (
         <AuthenticatedLayout
             header={
@@ -18,19 +15,11 @@ export default function Home({ homes }) {
                 </div>
             }
         >
-            <Head title="Cari Rumah" />
+            <Head title={home.name} />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <Location />
-                <Search />
 
-                <Section notitle>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-y-8 my-4 justify-between mt-10">
-                        {homes.map((home) => (
-                            <HomeCard home={home} key={home.id} />
-                        ))}
-                    </div>
-                </Section>
-                <div className="h-16"></div>
+                
+                <div className="h-24"></div>
             </div>
         </AuthenticatedLayout>
     );

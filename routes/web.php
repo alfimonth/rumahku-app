@@ -1,13 +1,18 @@
 <?php
 
-use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\HomesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
+Route::resource('/homes', HomesController::class)
+    ->only(['index', 'show'])
+    ->names([
+        'index' => 'explore',
+        'show' => 'detail'
+    ]);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

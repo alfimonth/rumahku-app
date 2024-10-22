@@ -49,13 +49,13 @@ export default function Home({ homes }) {
                 </Section>
 
                 <Section title="Untuk Anda">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-4 justify-between">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-y-8 my-4 justify-between">
                         {homes.map((home) => (
                             <HomeCard home={home} key={home.id} />
                         ))}
                     </div>
                 </Section>
-                <div className="h-24"></div>
+                <div className="h-16"></div>
             </div>
         </AuthenticatedLayout>
     );
