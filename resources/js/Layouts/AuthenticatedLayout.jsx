@@ -1,3 +1,4 @@
+import { MdSearch } from "react-icons/md"; 
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
@@ -31,6 +32,12 @@ export default function AuthenticatedLayout({ header, children }) {
                                     Home
                                 </NavLink>
                                 <NavLink
+                                    href={route("explore")}
+                                    active={route().current("explore")}
+                                >
+                                    Explore
+                                </NavLink>
+                                <NavLink
                                     href={route("dashboard")}
                                     active={route().current("dashboard")}
                                 >
@@ -38,30 +45,6 @@ export default function AuthenticatedLayout({ header, children }) {
                                 </NavLink>
                             </div>
                         </div>
-
-                        {/* {auth.user ? (
-                                    <Link
-                                        href={route('dashboard')}
-                                        className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                    >
-                                        Dashboard
-                                    </Link>
-                                ) : (
-                                    <>
-                                        <Link
-                                            href={route('login')}
-                                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                        >
-                                            Log in
-                                        </Link>
-                                        <Link
-                                            href={route('register')}
-                                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                        >
-                                            Register
-                                        </Link>
-                                    </>
-                                )} */}
 
                         {user ? (
                             <div className="hidden sm:ms-6 sm:flex sm:items-center">
@@ -221,7 +204,7 @@ export default function AuthenticatedLayout({ header, children }) {
 
             {/* <!-- Start Bottom Navigation --> */}
             <nav className="btm-nav md:hidden border-t-2 z-20">
-                <Link href={route("home")} className="active">
+                <Link href={route("home")} className={`${route().current("home") ? "active" : ""}`}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-5 w-5"
@@ -238,23 +221,10 @@ export default function AuthenticatedLayout({ header, children }) {
                     </svg>
                     <span className="btm-nav-label">Home</span>
                 </Link>
-                <button>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                        />
-                    </svg>
-                    <span className="btm-nav-label">...</span>
-                </button>
+                <Link href={route("explore")} className={`${route().current("explore") ? "active" : ""}`}>
+                    <span className="text-2xl"><MdSearch /></span>
+                    <span className="btm-nav-label">Explore</span>
+                </Link>
                 <button>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
