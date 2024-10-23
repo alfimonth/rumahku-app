@@ -6,21 +6,31 @@ import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link, usePage } from "@inertiajs/react";
 import { useState } from "react";
 
-export default function AuthenticatedLayout({ header, children }) {
+export default function AuthenticatedLayout({ header, children, activePage }) {
     const user = usePage().props.auth.user;
+
+    const isPage = (page) => {
+        if (page === activePage) {
+            return "active";
+        }
+    };
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900">
-            <nav className="border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800 hidden md:block">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="flex h-16 justify-between">
+            <link
+                href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+                rel="stylesheet"
+            />
+            <nav className="hidden bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-gray-800 md:block">
+                <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <div className="flex justify-between h-16">
                         <div className="flex">
-                            <div className="flex shrink-0 items-center">
+                            <div className="flex items-center shrink-0">
                                 <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                                    <ApplicationLogo className="block w-auto text-gray-800 fill-current h-9 dark:text-gray-200" />
                                 </Link>
                             </div>
 
@@ -54,7 +64,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                             <span className="inline-flex rounded-md">
                                                 <button
                                                     type="button"
-                                                    className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
+                                                    className="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-300"
                                                 >
                                                     {user.name}
 
@@ -92,7 +102,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                 </div>
                             </div>
                         ) : (
-                            <div className="h-full flex items-center">
+                            <div className="flex items-center h-full">
                                 <Link
                                     href={route("login")}
                                     className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
@@ -108,17 +118,17 @@ export default function AuthenticatedLayout({ header, children }) {
                             </div>
                         )}
 
-                        <div className="-me-2 flex items-center sm:hidden">
+                        <div className="flex items-center -me-2 sm:hidden">
                             <button
                                 onClick={() =>
                                     setShowingNavigationDropdown(
                                         (previousState) => !previousState
                                     )
                                 }
-                                className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-gray-400 dark:focus:bg-gray-900 dark:focus:text-gray-400"
+                                className="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-gray-400 dark:focus:bg-gray-900 dark:focus:text-gray-400"
                             >
                                 <svg
-                                    className="h-6 w-6"
+                                    className="w-6 h-6"
                                     stroke="currentColor"
                                     fill="none"
                                     viewBox="0 0 24 24"
@@ -157,7 +167,7 @@ export default function AuthenticatedLayout({ header, children }) {
                         " sm:hidden"
                     }
                 >
-                    <div className="space-y-1 pb-3 pt-2">
+                    <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink
                             href={route("dashboard")}
                             active={route().current("dashboard")}
@@ -166,7 +176,7 @@ export default function AuthenticatedLayout({ header, children }) {
                         </ResponsiveNavLink>
                     </div>
 
-                    <div className="border-t border-gray-200 pb-1 pt-4 dark:border-gray-600">
+                    <div className="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
                         <div className="px-4">
                             <div className="text-base font-medium text-gray-800 dark:text-gray-200">
                                 {/* {user.name} */}
@@ -194,19 +204,19 @@ export default function AuthenticatedLayout({ header, children }) {
 
             {header && (
                 <header className="bg-white dark:bg-gray-800">
-                    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                    <div className="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         {header}
                     </div>
                 </header>
             )}
 
             <main>{children}</main>
-
-            <nav className="btm-nav md:hidden border-t-2 z-20">
-                <Link href={route("home")} className={`${route().current("home") ? "active" : ""}`}>
+            {/* <!-- Start Bottom Navigation --> */}
+            <nav className="z-20 border-t-2 btm-nav md:hidden">
+                <Link href={route("home")} className={isPage("home")}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
+                        className="w-5 h-5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -220,14 +230,30 @@ export default function AuthenticatedLayout({ header, children }) {
                     </svg>
                     <span className="btm-nav-label">Home</span>
                 </Link>
-                <Link href={route("explore")} className={`${route().current("explore") ? "active" : ""}`}>
-                    <span className="text-2xl"><MdSearch /></span>
-                    <span className="btm-nav-label">Explore</span>
-                </Link>
                 <button>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5"
+                        className="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                        />
+                    </svg>
+                    <span className="btm-nav-label">...</span>
+                </button>
+                <Link
+                    className={isPage("transactions")}
+                    href={route("transactions")}
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -240,7 +266,7 @@ export default function AuthenticatedLayout({ header, children }) {
                         />
                     </svg>
                     <span className="btm-nav-label">Transaksi</span>
-                </button>
+                </Link>
                 <Link href={route("profile.edit")}>
                     <svg
                         className="w-6 h-6 text-gray-800 dark:text-white"
