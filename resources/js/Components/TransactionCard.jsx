@@ -5,8 +5,12 @@ const TransactionCard = (props) => {
     2. skeleton loading
     3. null value handling
     */
+
     return (
-        <div className="flex flex-row items-center gap-2 p-2 align-middle duration-100 rounded-lg cursor-pointer bg-slate-50 hover:bg-slate-100 active:bg-slate-200">
+        <div
+            className="flex flex-row items-center gap-2 p-2 align-middle duration-100 rounded-lg cursor-pointer bg-slate-50 hover:bg-slate-100 active:bg-slate-200"
+            onClick={(prop) => props.handleInspect(props)}
+        >
             <div id="product-image">
                 <img
                     src={props.image}

@@ -19,6 +19,10 @@ export default function AuthenticatedLayout({ header, children, activePage }) {
 
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900">
+            <link
+                href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+                rel="stylesheet"
+            />
             <nav className="hidden bg-white border-b border-gray-100 dark:border-gray-700 dark:bg-gray-800 md:block">
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
