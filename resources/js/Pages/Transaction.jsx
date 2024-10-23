@@ -5,10 +5,11 @@ import { Head } from "@inertiajs/react";
 import TransactionCard from "@/Components/TransactionCard";
 import { Inertia } from "@inertiajs/inertia";
 import ProductInspect from "@/Components/ProductInspect";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Transaction({ activePage }) {
     const [detail, setDetail] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const data = [
         {
@@ -83,22 +84,48 @@ export default function Transaction({ activePage }) {
         document.getElementById("my_modal_1").showModal();
     };
 
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 3000);
+    }, []);
+
     return (
         <AuthenticatedLayout activePage={activePage}>
             <ProductInspect detail={detail} />
             <Head title="Transaction" />
             <div className="container flex flex-col w-full h-screen gap-4 px-2 mb-[10rem]">
                 <h2 className="text-2xl font-bold text-center">
-                    Transaction History
+                    My Transaction History
                 </h2>
                 <div id="transactions" className="flex flex-col gap-3 p-3">
-                    {data.map((item, index) => (
-                        <TransactionCard
-                            key={index}
-                            handleInspect={handleInspect}
-                            {...item}
-                        />
-                    ))}
+                    <div class="flex w-full flex-col gap-4">
+                        {isLoading ? (
+                            <div class="flex items-center gap-10 flex-col">
+                                {[...Array(5)].map((_, index) => (
+                                    <span
+                                        key={index}
+                                        id="skeleton"
+                                        className="flex flex-row items-center gap-3"
+                                    >
+                                        <div className="w-16 h-16 rounded-full skeleton shrink-0"></div>
+                                        <div className="flex flex-col gap-4">
+                                            <div className="h-4 skeleton w-52"></div>
+                                            <div className="w-64 h-4 skeleton"></div>
+                                        </div>
+                                    </span>
+                                ))}
+                            </div>
+                        ) : (
+                            data.map((item, index) => (
+                                <TransactionCard
+                                    key={index}
+                                    handleInspect={handleInspect}
+                                    {...item}
+                                />
+                            ))
+                        )}
+                    </div>
                 </div>
             </div>
         </AuthenticatedLayout>
