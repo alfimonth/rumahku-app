@@ -1,6 +1,7 @@
 import { Link } from "@inertiajs/react";
 import ProgresBar from "./ProgresBar";
 import { useState } from "react";
+import useFormatPrice from "@/Hooks/useFormatPrice";
 
 export default function HomeCard({ home }) {
     const [isImageLoaded, setImageLoaded] = useState(false);
@@ -10,7 +11,9 @@ export default function HomeCard({ home }) {
             <Link href={route("detail", home.slug)} className="relative">
                 <figure
                     className={`w-full bg-gray-200 ${
-                        !isImageLoaded ? "animate-pulse aspect-square" : "h-full"
+                        !isImageLoaded
+                            ? "animate-pulse aspect-square"
+                            : "h-full"
                     }`}
                 >
                     <img
@@ -33,7 +36,9 @@ export default function HomeCard({ home }) {
                 >
                     {home.name}
                 </Link>
-                {FormatedPrice(home.price)}
+                <span className="text-right text-primary font-bold align-bottom">
+                    {useFormatPrice(home.price)}
+                </span>
                 <ProgresBar
                     total={Math.round((home.invested / home.price) * 100)}
                 />
@@ -49,17 +54,4 @@ export default function HomeCard({ home }) {
             </div>
         </div>
     );
-
-    function FormatedPrice(price) {
-        return (
-            <span className="text-right text-primary font-bold align-bottom">
-                {new Intl.NumberFormat("id-ID", {
-                    style: "currency",
-                    currency: "IDR",
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0,
-                }).format(price)}
-            </span>
-        );
-    }
 }

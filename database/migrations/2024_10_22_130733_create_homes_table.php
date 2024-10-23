@@ -22,6 +22,7 @@ return new class extends Migration
             $table->decimal('profit', 5, 2);
             $table->decimal('invested', 15, 2);
             $table->integer('investor');
+            $table->string('location');
             $table->timestamps();
         });
     }

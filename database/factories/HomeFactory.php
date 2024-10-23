@@ -25,6 +25,7 @@ class HomeFactory extends Factory
             'description' => $this->faker->sentence(10),
             'image' => 'https://picsum.photos/300/300',
             'price' => $price,
+            'location' => $this->faker->address,
             'profit' => $this->faker->randomFloat(1, 0, 100),
             'invested' => $this->faker->randomFloat(2, 0, $price),
             'investor' => $this->faker->numberBetween(1, 30),

@@ -16,10 +16,11 @@ class HomesController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($slug)
     {
+        $home = HomeModel::where('slug', $slug)->first();
         return Inertia::render('Detail', [
-            'home' => '',
+            'home' => $home,
         ]);
     }
 }
