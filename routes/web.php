@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
@@ -12,6 +13,8 @@ Route::resource('transactions', TransactionController::class)->names([
     'index' => 'transactions',
     'show' => 'transaction.show',
 ]);
+Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

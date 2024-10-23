@@ -1,3 +1,4 @@
+import { MdSearch } from "react-icons/md"; 
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
@@ -41,6 +42,12 @@ export default function AuthenticatedLayout({ header, children, activePage }) {
                                     Home
                                 </NavLink>
                                 <NavLink
+                                    href={route("explore")}
+                                    active={route().current("explore")}
+                                >
+                                    Explore
+                                </NavLink>
+                                <NavLink
                                     href={route("dashboard")}
                                     active={route().current("dashboard")}
                                 >
@@ -48,30 +55,6 @@ export default function AuthenticatedLayout({ header, children, activePage }) {
                                 </NavLink>
                             </div>
                         </div>
-
-                        {/* {auth.user ? (
-                                    <Link
-                                        href={route('dashboard')}
-                                        className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                    >
-                                        Dashboard
-                                    </Link>
-                                ) : (
-                                    <>
-                                        <Link
-                                            href={route('login')}
-                                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                        >
-                                            Log in
-                                        </Link>
-                                        <Link
-                                            href={route('register')}
-                                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                        >
-                                            Register
-                                        </Link>
-                                    </>
-                                )} */}
 
                         {user ? (
                             <div className="hidden sm:ms-6 sm:flex sm:items-center">
@@ -228,7 +211,6 @@ export default function AuthenticatedLayout({ header, children, activePage }) {
             )}
 
             <main>{children}</main>
-
             {/* <!-- Start Bottom Navigation --> */}
             <nav className="z-20 border-t-2 btm-nav md:hidden">
                 <Link href={route("home")} className={isPage("home")}>
@@ -304,7 +286,6 @@ export default function AuthenticatedLayout({ header, children, activePage }) {
                     <span className="btm-nav-label">Akun</span>
                 </Link>
             </nav>
-            {/* <!-- End Bottom Navigation --> */}
         </div>
     );
 }

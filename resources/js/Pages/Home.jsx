@@ -2,6 +2,11 @@ import HomeCard from "@/Components/HomeCard";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import Section from "@/Layouts/Section";
 import { Head } from "@inertiajs/react";
+import MenuButton from "@/Components/MenuButton";
+import { MdCall, MdHome, MdAttachMoney } from "react-icons/md";
+import Search from "@/Components/Search";
+import Location from "@/Components/Location";
+import Carousel from "@/Components/Carousel";
 
 export default function Home({ homes }) {
     return (
@@ -191,9 +196,7 @@ export default function Home({ homes }) {
                         </div>
                     </div>
                 </Section>
-                {/* <!-- End Main Menu --> */}
 
-                {/* <!-- Start For Your Page --> */}
                 <Section title="Untuk Anda">
                     <div className="grid justify-between grid-cols-2 gap-4 my-4 md:grid-cols-4">
                         {homes.map((home) => (
@@ -201,7 +204,6 @@ export default function Home({ homes }) {
                         ))}
                     </div>
                 </Section>
-                {/* <!-- End For Your Page --> */}
                 <div className="h-24"></div>
             </div>
         </AuthenticatedLayout>
