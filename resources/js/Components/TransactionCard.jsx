@@ -42,7 +42,7 @@ const TransactionCard = (props) => {
                             className="flex justify-center p-0 text-xs font-bold text-white bg-green-400 rounded-xl"
                             style={{ width: `${props.progress}%` }}
                         >
-                            50%
+                            {props.progress}%
                         </div>
                     </div>
                     <span

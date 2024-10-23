@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 export default function Transaction({ activePage }) {
     const [detail, setDetail] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [dataState, setDataState] = useState("all");
 
     const data = [
         {
@@ -77,6 +78,19 @@ export default function Transaction({ activePage }) {
             description:
                 "Rumah klasik tipe 45 ini memiliki luas tanah 45m2 dan luas bangunan 36m2. Rumah ini memiliki 3 kamar tidur, 2 kamar mandi, dan 1 garasi. Rumah ini sangat cocok untuk anda yang ingin memiliki rumah yang klasik dan nyaman.",
         },
+        {
+            id: 11,
+            name: "Rumah kebeli",
+            image: "https://www.adira.co.id/img/frontend/news/thumb_rumahmewahminimalisjpg.jpg",
+            price: 2500000,
+            investamout: 250000,
+            progress: 100,
+            investor: 10,
+            timeRemain: 18,
+            date: "2022-10-01 02:15:00",
+            description:
+                "Rumah klasik tipe 45 ini memiliki luas tanah 45m2 dan luas bangunan 36m2. Rumah ini memiliki 3 kamar tidur, 2 kamar mandi, dan 1 garasi. Rumah ini sangat cocok untuk anda yang ingin memiliki rumah yang klasik dan nyaman.",
+        },
     ];
 
     const handleInspect = (prop) => {
@@ -90,6 +104,15 @@ export default function Transaction({ activePage }) {
         }, 3000);
     }, []);
 
+    const handlerDataState = (e, state) => {
+        e.preventDefault();
+        setDataState(state);
+    };
+
+    useEffect(() => {
+        console.log(dataState);
+    }, [dataState]);
+
     return (
         <AuthenticatedLayout activePage={activePage}>
             <ProductInspect detail={detail} />
@@ -98,10 +121,41 @@ export default function Transaction({ activePage }) {
                 <h2 className="text-2xl font-bold text-center">
                     My Transaction History
                 </h2>
+                <div
+                    id="stateDataHandlerButton"
+                    className="flex flex-col items-center justify-center w-full align-middle"
+                >
+                    <div class="join join-horizontal">
+                        <button
+                            class={"btn-sm join-item border duration-150 transition-transform".concat(
+                                dataState === "all" ? " bg-green-300" : ""
+                            )}
+                            onClick={(e) => handlerDataState(e, "all")}
+                        >
+                            All
+                        </button>
+                        <button
+                            class={"btn-sm join-item border duration-150 transition-transform".concat(
+                                dataState === "process" ? " bg-green-300" : ""
+                            )}
+                            onClick={(e) => handlerDataState(e, "process")}
+                        >
+                            Process
+                        </button>
+                        <button
+                            class={"btn-sm join-item border duration-150 transition-transform".concat(
+                                dataState === "complete" ? " bg-green-300" : ""
+                            )}
+                            onClick={(e) => handlerDataState(e, "complete")}
+                        >
+                            Complete
+                        </button>
+                    </div>
+                </div>
                 <div id="transactions" className="flex flex-col gap-3 p-3">
-                    <div class="flex w-full flex-col gap-4">
+                    <div className="flex flex-col w-full gap-4 mb-20">
                         {isLoading ? (
-                            <div class="flex items-center gap-10 flex-col">
+                            <div className="flex flex-col items-center gap-10">
                                 {[...Array(5)].map((_, index) => (
                                     <span
                                         key={index}
@@ -117,13 +171,39 @@ export default function Transaction({ activePage }) {
                                 ))}
                             </div>
                         ) : (
-                            data.map((item, index) => (
-                                <TransactionCard
-                                    key={index}
-                                    handleInspect={handleInspect}
-                                    {...item}
-                                />
-                            ))
+                            // Ubah logika switch menjadi if/else
+                            <>
+                                {dataState === "all" &&
+                                    data.map((item, index) => (
+                                        <TransactionCard
+                                            key={index}
+                                            handleInspect={handleInspect}
+                                            {...item}
+                                        />
+                                    ))}
+
+                                {dataState === "process" &&
+                                    data
+                                        .filter((item) => item.progress < 100)
+                                        .map((item, index) => (
+                                            <TransactionCard
+                                                key={index}
+                                                handleInspect={handleInspect}
+                                                {...item}
+                                            />
+                                        ))}
+
+                                {dataState === "complete" &&
+                                    data
+                                        .filter((item) => item.progress === 100)
+                                        .map((item, index) => (
+                                            <TransactionCard
+                                                key={index}
+                                                handleInspect={handleInspect}
+                                                {...item}
+                                            />
+                                        ))}
+                            </>
                         )}
                     </div>
                 </div>
