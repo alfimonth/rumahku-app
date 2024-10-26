@@ -13,12 +13,23 @@ use Inertia\Response;
 
 class ProfileController extends Controller
 {
+    public function index()
+    {
+        return Inertia::render('Profile/Index');
+    }
     /**
      * Display the user's profile form.
      */
     public function edit(Request $request): Response
     {
         return Inertia::render('Profile/Edit', [
+            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            'status' => session('status'),
+        ]);
+    }
+    public function editPassword(Request $request): Response
+    {
+        return Inertia::render('Profile/EditPassword', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
         ]);
