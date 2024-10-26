@@ -21,14 +21,8 @@ class HomeFactory extends Factory
         $price = round($this->faker->randomFloat(2, 10000000, 1000000000), -3);
         return [
             'slug' => Str::slug($name),
-            'name' => $name, 
+            'name' => $name,
             'description' => $this->faker->sentence(10),
-            'image' => 'https://picsum.photos/300/300',
-            'price' => $price,
-            'location' => $this->faker->address,
-            'profit' => $this->faker->randomFloat(1, 0, 100),
-            'invested' => $this->faker->randomFloat(2, 0, $price),
-            'investor' => $this->faker->numberBetween(1, 30),
         ];
     }
 }

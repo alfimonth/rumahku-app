@@ -5,27 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Home extends Model
+class HomeData extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = [
+        'id'
+    ];
 
-    public function home_data()
+    public function transactions()
     {
-        return $this->hasOne(HomeData::class);
+        return $this->hasMany(Transaction::class);
     }
 
-    public function homeImage()
+    public function homes()
     {
-        return $this->hasMany(HomeImage::class);
+        return $this->belongsTo(Home::class);
     }
-
-    public function location()
-    {
-        return $this->hasOne(HomeLocation::class);
-    }
-
 
     public static function boot()
     {
@@ -34,7 +30,7 @@ class Home extends Model
         parent::boot();
 
         static::retrieved(function ($model) {
-            $model->load('home_data', 'homeImage', 'location');
+            $model->load('homes', 'transactions');
         });
     }
 }
