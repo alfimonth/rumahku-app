@@ -3,7 +3,7 @@ import { Link, usePage } from "@inertiajs/react";
 
 export default function GuestLayout({ children }) {
     return (
-        <div className="flex flex-col items-center min-h-screen pt-6 bg-gray-100 sm:justify-center sm:pt-0 dark:bg-gray-900">
+        <div className="flex flex-col items-center justify-center min-h-screen pt-6 align-middle bg-gray-100 sm:pt-0 dark:bg-gray-900">
             <link
                 href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
                 rel="stylesheet"
