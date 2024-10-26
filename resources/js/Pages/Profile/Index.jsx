@@ -1,16 +1,13 @@
 import { BiLogOut } from "react-icons/bi";
 import { BiLockAlt } from "react-icons/bi";
-import { BiLock } from "react-icons/bi";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head, Link } from "@inertiajs/react";
-import DeleteUserForm from "./Partials/DeleteUserForm";
-import UpdatePasswordForm from "./Partials/UpdatePasswordForm";
-import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationForm";
+import { Head, Link, usePage } from "@inertiajs/react";
 import Section from "@/Layouts/Section";
 import MenuButton from "@/Components/MenuButton";
-import { BiDollar, BiHome, BiPhone } from "react-icons/bi";
+import { BiDollar, BiPhone } from "react-icons/bi";
 
-export default function Edit({ mustVerifyEmail, status }) {
+export default function IndexProfile() {
+    const user = usePage().props.auth.user;
     return (
         <AuthenticatedLayout
             header={
@@ -32,12 +29,15 @@ export default function Edit({ mustVerifyEmail, status }) {
                 </div>
                 <div className="w-fit mx-auto flex flex-col  my-2 items-center">
                     <h2 className="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                        Falah anugrah
+                        {user.name}
                     </h2>
-                    <span>falahanugrah@gmail.com</span>
+                    <span>{user.email}</span>
                 </div>
                 <div className="w-fit mx-auto my-4">
-                    <Link href={route("profile.edit")} className="btn btn-primary text-white">
+                    <Link
+                        href={route("profile.edit")}
+                        className="btn btn-primary text-white"
+                    >
                         Edit Profil
                     </Link>
                 </div>
@@ -67,9 +67,11 @@ export default function Edit({ mustVerifyEmail, status }) {
                         />
                         <MenuButton icon={<BiPhone />} title="Call Center" />
                         <MenuButton
+                            href={route("logout")}
                             icon={<BiLogOut />}
                             className="bg-[#4B9DCB]"
                             title="Logout"
+                            method="post"
                         />
                     </div>
                 </Section>

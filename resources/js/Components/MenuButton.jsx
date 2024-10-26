@@ -5,9 +5,11 @@ export default function MenuButton({
     icon,
     className = "bg-primary",
     href = "#",
+    ...props
 }) {
     return (
         <Link
+            {...props}
             href={href}
             className={`transition-all flex flex-col items-center justify-center gap-2 md:w-32 p-2 rounded-xl aspect-square ${className} `}
         >
