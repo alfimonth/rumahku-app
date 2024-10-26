@@ -9,12 +9,6 @@ import { BiUser, BiDetail, BiSearch, BiHome } from "react-icons/bi";
 export default function AuthenticatedLayout({ header, children, activePage }) {
     const user = usePage().props.auth.user;
 
-    const isPage = (page) => {
-        if (page === activePage) {
-            return "active";
-        }
-    };
-
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
