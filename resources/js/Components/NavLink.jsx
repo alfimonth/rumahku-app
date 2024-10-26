@@ -29,7 +29,7 @@ export function NavLinkBottom({
     text = "...",
 }) {
     return (
-        <Link href={route(href)} className={active && "active"}>
+        <Link href={route(href)} className={active ? "active" : ""}>
             {icon}
             <span className="btm-nav-label">{text}</span>
         </Link>

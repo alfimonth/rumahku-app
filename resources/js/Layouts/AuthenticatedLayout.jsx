@@ -42,11 +42,17 @@ export default function AuthenticatedLayout({ header, children, activePage }) {
                                     Explore
                                 </NavLink>
                                 <NavLink
+                                    href={route("transactions")}
+                                    active={route().current("transactions")}
+                                >
+                                    Transaction
+                                </NavLink>
+                                {/* <NavLink
                                     href={route("dashboard")}
                                     active={route().current("dashboard")}
                                 >
                                     Dashboard
-                                </NavLink>
+                                </NavLink> */}
                             </div>
                         </div>
 
@@ -80,7 +86,7 @@ export default function AuthenticatedLayout({ header, children, activePage }) {
 
                                         <Dropdown.Content>
                                             <Dropdown.Link
-                                                href={route("profile.edit")}
+                                                href={route("profile")}
                                             >
                                                 Profile
                                             </Dropdown.Link>
@@ -181,7 +187,7 @@ export default function AuthenticatedLayout({ header, children, activePage }) {
                         </div>
 
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route("profile.edit")}>
+                            <ResponsiveNavLink href={route("profile")}>
                                 Profile
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
@@ -217,7 +223,7 @@ export default function AuthenticatedLayout({ header, children, activePage }) {
                     href="explore"
                     active={route().current("explore")}
                     icon={<BiSearch className="w-6 h-6" />}
-                    text="Cari"
+                    text="Explore"
                 />
                 <NavLinkBottom
                     href="transactions"
@@ -226,8 +232,8 @@ export default function AuthenticatedLayout({ header, children, activePage }) {
                     text="Transaksi"
                 />
                 <NavLinkBottom
-                    href="profile.edit"
-                    active={route().current("profile.edit")}
+                    href="profile"
+                    active={route().current("profile")}
                     icon={<BiUser className="w-6 h-6" />}
                     text="Akun"
                 />
