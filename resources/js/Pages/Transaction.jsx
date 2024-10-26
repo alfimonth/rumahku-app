@@ -1,9 +1,6 @@
-import HomeCard from "@/Components/HomeCard";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import Section from "@/Layouts/Section";
 import { Head } from "@inertiajs/react";
 import TransactionCard from "@/Components/TransactionCard";
-import { Inertia } from "@inertiajs/inertia";
 import ProductInspect from "@/Components/ProductInspect";
 import { useState, useEffect } from "react";
 
@@ -125,9 +122,9 @@ export default function Transaction({ activePage }) {
                     id="stateDataHandlerButton"
                     className="flex flex-col items-center justify-center w-full align-middle"
                 >
-                    <div class="join join-horizontal">
+                    <div className="join join-horizontal">
                         <button
-                            class={"btn-sm join-item border duration-150 transition-transform".concat(
+                            className={"btn-sm join-item border duration-150 transition-transform".concat(
                                 dataState === "all" ? " bg-green-300" : ""
                             )}
                             onClick={(e) => handlerDataState(e, "all")}
@@ -135,7 +132,7 @@ export default function Transaction({ activePage }) {
                             All
                         </button>
                         <button
-                            class={"btn-sm join-item border duration-150 transition-transform".concat(
+                            className={"btn-sm join-item border duration-150 transition-transform".concat(
                                 dataState === "process" ? " bg-green-300" : ""
                             )}
                             onClick={(e) => handlerDataState(e, "process")}
@@ -143,7 +140,7 @@ export default function Transaction({ activePage }) {
                             Process
                         </button>
                         <button
-                            class={"btn-sm join-item border duration-150 transition-transform".concat(
+                            className={"btn-sm join-item border duration-150 transition-transform".concat(
                                 dataState === "complete" ? " bg-green-300" : ""
                             )}
                             onClick={(e) => handlerDataState(e, "complete")}

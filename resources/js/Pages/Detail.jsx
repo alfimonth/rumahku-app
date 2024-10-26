@@ -5,7 +5,6 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link } from "@inertiajs/react";
 
 export default function Detail({ home }) {
-    console.log(home);
     return (
         <AuthenticatedLayout
             header={

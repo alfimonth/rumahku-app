@@ -1,10 +1,10 @@
-import { MdSearch } from "react-icons/md"; 
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
-import NavLink from "@/Components/NavLink";
+import NavLink, { NavLinkBottom } from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link, usePage } from "@inertiajs/react";
 import { useState } from "react";
+import { BiUser, BiDetail, BiSearch, BiHome } from "react-icons/bi";
 
 export default function AuthenticatedLayout({ header, children, activePage }) {
     const user = usePage().props.auth.user;
@@ -213,78 +213,30 @@ export default function AuthenticatedLayout({ header, children, activePage }) {
             <main>{children}</main>
             {/* <!-- Start Bottom Navigation --> */}
             <nav className="z-20 border-t-2 btm-nav md:hidden">
-                <Link href={route("home")} className={isPage("home")}>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-5 h-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                        />
-                    </svg>
-                    <span className="btm-nav-label">Home</span>
-                </Link>
-                <button>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-5 h-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                        />
-                    </svg>
-                    <span className="btm-nav-label">...</span>
-                </button>
-                <Link
-                    className={isPage("transactions")}
-                    href={route("transactions")}
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-5 h-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                    </svg>
-                    <span className="btm-nav-label">Transaksi</span>
-                </Link>
-                <Link href={route("profile.edit")}>
-                    <svg
-                        className="w-6 h-6 text-gray-800 dark:text-white"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                        />
-                    </svg>
-                    <span className="btm-nav-label">Akun</span>
-                </Link>
+                <NavLinkBottom
+                    href="home"
+                    active={route().current("home")}
+                    icon={<BiHome className="w-6 h-6" />}
+                    text="Home"
+                />
+                <NavLinkBottom
+                    href="explore"
+                    active={route().current("explore")}
+                    icon={<BiSearch className="w-6 h-6" />}
+                    text="Cari"
+                />
+                <NavLinkBottom
+                    href="transactions"
+                    active={route().current("transactions")}
+                    icon={<BiDetail className="w-6 h-6" />}
+                    text="Transaksi"
+                />
+                <NavLinkBottom
+                    href="profile.edit"
+                    active={route().current("profile.edit")}
+                    icon={<BiUser className="w-6 h-6" />}
+                    text="Akun"
+                />
             </nav>
         </div>
     );
