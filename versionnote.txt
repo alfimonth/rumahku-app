@@ -3,3 +3,4 @@
 - menambahkan explore page
 - memambahakan model, migrasi, factory, seeder home
 - menambahkan profile page
+- menambahkan admin page

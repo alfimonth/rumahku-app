@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\HomesController;
+use Inertia\Inertia;
+use App\Http\Middleware\CheckRole;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransactionController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -24,7 +24,7 @@ Route::resource('/homes', HomesController::class)
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', CheckRole::class . ':admin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
